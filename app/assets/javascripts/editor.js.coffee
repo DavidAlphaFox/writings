@@ -115,7 +115,10 @@ class @Editor
 
   paste: (event) ->
     @dirty = true
-
+  # 事件顺序 keydown input keyup
+  # keydown事件发生时，输入值并没有发生变化，所以keydown可用于阻止某些输入字符的显示
+  # input事件发生时，无法获取到keyCode值，并且紧随在keydown事件之后
+  # keyup事件最后发生，一次键盘敲入事件彻底完成
   input: (event) ->
     _this = this
     if _this.dirty
@@ -186,9 +189,9 @@ class @Editor
     @formator.p()  if @editable.html() is "" or @editable.html() is "<br>"
 
   selectEnd: ->
-    selection = document.getSelection()
-    selection.selectAllChildren @editable[0]
-    selection.collapseToEnd()
+    selection = document.getSelection() #用户选择的文本范围或光标的当前位置
+    selection.selectAllChildren @editable[0] #将editable[0]设为选中区域
+    selection.collapseToEnd() #取消当前选区，并把光标定位在原选区的最末尾处
 
   storeRange: ->
     selection = document.getSelection()
@@ -201,8 +204,8 @@ class @Editor
 
   restoreRange: ->
     selection = document.getSelection()
-    range = document.createRange()
-    if @storedRange
+    range = document.createRange() 
+    if @storedRange #如果存在存储的选中区域,设置选中区域
       range.setStart @storedRange.startContainer, @storedRange.startOffset
       range.setEnd @storedRange.endContainer, @storedRange.endOffset
       selection.removeAllRanges()

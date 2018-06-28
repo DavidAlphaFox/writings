@@ -170,7 +170,7 @@ class ArticleEdit
     if @isPersisted()
       @updateArticle article:
         title: @extractTitle()
-        body: @editor.editable.html()
+        body: @editor.editable.html() # 将editable整个html保存下来
     else
       @createArticle()
 

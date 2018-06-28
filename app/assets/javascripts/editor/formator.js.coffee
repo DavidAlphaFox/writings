@@ -278,8 +278,8 @@ class @Editor.Formator
     selection.getRangeAt(0).commonAncestorContainer  if selection.rangeCount isnt 0
 
   exec: (command, arg) ->
-    document.execCommand command, false, arg
+    document.execCommand command, false, arg #执行操作
 
   afterFormat: ->
-    @editor.undoManager.save()
-    @editable.trigger "editor:change"
+    @editor.undoManager.save() #让undo管理器保存操作
+    @editable.trigger "editor:change" # 触发变更操作
