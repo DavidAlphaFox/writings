@@ -187,7 +187,7 @@ class @Editor
 
     # chrome is empty and firefox is <br>
     @formator.p()  if @editable.html() is "" or @editable.html() is "<br>"
-
+  # 直接将光标放到编辑区域的最末尾
   selectEnd: ->
     selection = document.getSelection() #用户选择的文本范围或光标的当前位置
     selection.selectAllChildren @editable[0] #将editable[0]设为选中区域

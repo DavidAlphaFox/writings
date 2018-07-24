@@ -1,6 +1,6 @@
 class @Editor.Sanitize
   constructor: (@editor) ->
-    @editable = @editor.editable
+    @editable = @editor.editable # 确定editor是可以编辑的
 
   run: ->
     @sanitizeDiv()
@@ -10,7 +10,7 @@ class @Editor.Sanitize
     @sanitizeHeader()
     @sanitizeCode()
     @sanitizeList()
-
+  # 设置html标签白名单
   tagWhiteList: ["p", "br", "img", "a", "b", "i", "strike", "u", "h1", "h2", "h3", "h4", "pre", "code", "ol", "ul", "li", "blockquote"]
   attrWhiteList:
     p: ["id"]
@@ -24,14 +24,14 @@ class @Editor.Sanitize
     img: ["src", "title", "alt"]
 
   sanitizeDiv: ->
-
+    # 用p标签代替div标签
     # replace div to p
     @editable.find("div").each ->
       $(this).replaceWith $("<p>").append($(this).contents())
 
 
   sanitizeTag: ->
-
+    # 找到所有非白名单的标签，使用标签内的内容直接代替标签或者直接删除
     # stript not allow tags
     @editable.find(":not(" + @tagWhiteList.join() + ")").each ->
       $element = $(this)
@@ -114,7 +114,7 @@ class @Editor.Sanitize
 
 
   sanitizeCode: ->
-    _this = this
+    _this = this # 使用Code标签，代替pre标签
     @editable.find("pre").each ->
       $(this).append $("<code>").append($(this).contents())  if $(this).find("> code").length is 0
 
