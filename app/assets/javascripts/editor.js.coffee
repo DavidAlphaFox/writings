@@ -132,8 +132,8 @@ class @Editor
     end = contents.last()[0]
     range.setStart start, 0
     range.setEnd end, end.childNodes.length or end.length # text node don't have childNodes
-    selection.removeAllRanges()
-    selection.addRange range
+    selection.removeAllRanges() # 移除所有选中的区域
+    selection.addRange range # 设置contents的区域被选中
 
   keyup: (event) ->
     switch event.keyCode

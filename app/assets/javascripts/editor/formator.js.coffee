@@ -239,14 +239,14 @@ class @Editor.Formator
     true
 
   blockquote: ->
-    selection = window.getSelection()
-    range = selection.getRangeAt(0)
-    rangeAncestor = range.commonAncestorContainer
+    selection = window.getSelection() # 获取选中区域
+    range = selection.getRangeAt(0) # 获取范围
+    rangeAncestor = range.commonAncestorContainer 
     start = undefined
     end = undefined
-    $blockquote = $(rangeAncestor).closest("blockquote")
+    $blockquote = $(rangeAncestor).closest("blockquote") # 获得最近的quote标签
     if $blockquote.length
-
+      # 删除掉所有blockquote，并设置选中区域
       # remmove blockquote
       $contents = $blockquote.contents()
       $blockquote.replaceWith $contents
@@ -260,7 +260,7 @@ class @Editor.Formator
       range.setEndAfter end
       $blockquote = $("<blockquote>")
       $blockquote.html(range.extractContents()).find("blockquote").each ->
-        $(this).replaceWith $(this).html()
+        $(this).replaceWith $(this).html() #将这个区域内所有的blockquto都去除掉
 
       range.insertNode $blockquote[0]
       selection.selectAllChildren $blockquote[0]
