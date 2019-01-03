@@ -5,20 +5,20 @@
 @import "highlight_js/github";
 
 // base
-
+// 定义基本字体
 @font-face {
   font-family: 'Ubuntu';
-  font-style: normal;
-  font-weight: 400;
+  font-style: normal; // 设置字体的样式 CSS1
+  font-weight: 400; // 设置字体的粗细 CSS1
   src: local('Ubuntu'), font-url("ubuntu.woff") format('woff');
 }
 
 body {
-  color: #333;
-  background-color: #efefef;
-  font-size: 14px;
+  color: #333; // 文本颜色属性 CSS1
+  background-color: #efefef; // 背景颜色属性 CSS1
+  font-size: 14px; // 字体大小
   font-family: Helvetica, Arial, sans-serif;
-  line-height: $commonLineHeight;
+  line-height: $commonLineHeight; // 行高
 }
 
 h1, h2, h3, h4 {
