@@ -3,7 +3,7 @@ module ArticlesHelper
     articles.options[:skip].to_i + articles.to_a.count >= articles.count
   end
 
-  def article_format_body(text)
+  def article_format_body(text) ## 生成文档内容
     sanitize text, :tags => %w(p br img h1 h2 h3 h4 blockquote pre code b i strike u a ul ol li), :attributes => %w(href src id)
   end
 

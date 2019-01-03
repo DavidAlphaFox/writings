@@ -77,7 +77,7 @@ class ArticleEdit
         Dialog.hide "#urlname-modal"
 
   updateArticle: (data, success_callback, error_callback) ->
-    @saveStart()
+    @saveStart() ## 开始保存
     data.article.save_count = @saveCount
     $.ajax(
       url: "/~#{@space}/articles/" + @article.data("id")
@@ -86,7 +86,7 @@ class ArticleEdit
       dataType: "json"
     ).success((data) =>
       if data.save_count is @saveCount
-        @saveCompelete()
+        @saveCompelete() ## 保存成功
       @updateViewButton data
       success_callback data if success_callback
     ).error (xhr) =>
@@ -163,7 +163,7 @@ class ArticleEdit
 
   showRetryButton: ->
     $("#save-status .retry").show().siblings().hide()
-
+  # 保存文档
   saveArticle: (event) ->
     event.preventDefault() if event
 
